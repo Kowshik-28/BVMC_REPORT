@@ -71,6 +71,12 @@ The server will start on port `8000` (or the port specified by the `PORT` enviro
 * **Customer Portal**: Open [http://localhost:8000/](http://localhost:8000/) in your browser.
 * **Owner Portal**: Open [http://localhost:8000/owner](http://localhost:8000/owner) (will prompt for login if not signed in).
 
+### Deploying on Vercel
+
+Vercel functions do not provide a persistent writable project filesystem. For a Vercel deployment, provision a PostgreSQL database and set `DATABASE_URL` in the Vercel project's Environment Variables for each environment you deploy. Use the provider's PostgreSQL connection URL; keep it private and do not commit it to the repository.
+
+When `DATABASE_URL` points to PostgreSQL, fleet state, report metadata, and generated report HTML are stored in the database. After setting the variable, redeploy and check `/api/status`; it should report `"type": "PostgreSQL"` and `"connected": true`. The local SQLite database remains the default when `DATABASE_URL` is unset.
+
 ---
 
 ## 🧾 Issue Fields, Component Grouping & Customer Feedback

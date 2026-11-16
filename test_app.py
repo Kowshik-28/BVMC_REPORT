@@ -322,6 +322,10 @@ def test_new_fields_saved_and_kept_when_published():
         row = conn.execute("SELECT vehicles_json FROM reports").fetchone()
         conn.close()
         assert json.loads(row[0])[VIN_B]["issue_details"][0]["severity"] == "Medium"
+        conn = app_module.get_db_connection()
+        row = conn.execute("SELECT report_html FROM reports").fetchone()
+        conn.close()
+        assert row and "Issue a1" in row[0]
         report = client.get("/" + pub.json()["report"]["file"]).text
         for text in ("Issue a1", "Description a1", "29 and 30 September 2026", "Cell ageing", "BMS Team", "PTE team"):
             assert text in report

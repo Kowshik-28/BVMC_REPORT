@@ -39,6 +39,12 @@ DB_PATH = os.path.join(DIR_PATH, "fleet_state.db")
 os.makedirs(REPORTS_DIR, exist_ok=True)
 os.makedirs(FLEET_REPORTS_DIR, exist_ok=True)
 
+
+def uses_postgres() -> bool:
+    db_url = os.environ.get("DATABASE_URL", "")
+    return bool(db_url and not db_url.startswith("sqlite"))
+
+
 # Authentication & Configuration
 SECRET_KEY = os.environ.get(
     "SECRET_KEY", "bvmc-boson-secret-key-super-secure-production-2026")
@@ -136,7 +142,7 @@ PREDEFINED_VEHICLES = {
 
 def get_db_connection():
     db_url = os.environ.get("DATABASE_URL")
-    if db_url and not db_url.startswith("sqlite"):
+    if uses_postgres():
         import psycopg2
         if db_url.startswith("postgres://"):
             db_url = db_url.replace("postgres://", "postgresql://", 1)
@@ -155,6 +161,7 @@ def get_db_connection():
 def init_db():
     conn = get_db_connection()
     cursor = conn.cursor()
+    is_postgres = uses_postgres()
 
     # 1. fleet_state table
     cursor.execute("""
@@ -177,15 +184,22 @@ def init_db():
             vehicles_label TEXT,
             file_path TEXT,
             vehicles_json TEXT,
+            report_html TEXT,
             created_at TEXT
         );
     """)
 
-    # Ensure vehicles_json column exists if migrating existing database
-    try:
-        cursor.execute("ALTER TABLE reports ADD COLUMN vehicles_json TEXT")
-    except Exception:
-        pass
+    if is_postgres:
+        cursor.execute(
+            "ALTER TABLE reports ADD COLUMN IF NOT EXISTS vehicles_json TEXT")
+        cursor.execute(
+            "ALTER TABLE reports ADD COLUMN IF NOT EXISTS report_html TEXT")
+    else:
+        cursor.execute("PRAGMA table_info(reports)")
+        columns = {row[1] for row in cursor.fetchall()}
+        for column in ("vehicles_json", "report_html"):
+            if column not in columns:
+                cursor.execute(f"ALTER TABLE reports ADD COLUMN {column} TEXT")
 
     conn.commit()
     conn.close()
@@ -227,8 +241,27 @@ def save_state_to_json(vehicles: dict, global_duration: str):
 
 
 def load_previous_vehicles() -> dict:
+    if uses_postgres():
+        try:
+            init_db()
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT global_duration, vehicles_json FROM fleet_state WHERE id = 1")
+            row = cursor.fetchone()
+            conn.close()
+            if row:
+                global_duration, vehicles_json = row
+                vehicles = json.loads(vehicles_json) if vehicles_json else {}
+                if vehicles:
+                    return {"global_duration": global_duration or "", "vehicles": vehicles}
+        except Exception as e:
+            print(f"⚠️ Warning: Could not load state from database: {e}")
+            if uses_postgres():
+                raise
+
     # 1. Try JSON backup file first
-    if os.path.exists(FLEET_STATE_JSON_PATH):
+    if not uses_postgres() and os.path.exists(FLEET_STATE_JSON_PATH):
         try:
             with open(FLEET_STATE_JSON_PATH, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -268,10 +301,13 @@ def save_state_to_builder(vehicles: dict, global_duration: str):
         save_state_to_db(vehicles, global_duration)
     except Exception as e:
         print(f"⚠️ Warning: Could not save state to DB: {e}")
-    try:
-        save_state_to_json(vehicles, global_duration)
-    except Exception as e:
-        print(f"⚠️ Warning: Could not save state to JSON: {e}")
+        if uses_postgres():
+            raise
+
+    if uses_postgres():
+        return
+
+    save_state_to_json(vehicles, global_duration)
 
     builder_file = os.path.join(DIR_PATH, "vehicle_mission_report-4.html")
     if not os.path.exists(builder_file):
@@ -364,6 +400,7 @@ def get_all_reports() -> List[Dict[str, Any]]:
 
     # 1. Try DB
     try:
+        init_db()
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
@@ -393,6 +430,8 @@ def get_all_reports() -> List[Dict[str, Any]]:
                 })
     except Exception as e:
         print(f"⚠️ Warning: Could not query reports from DB ({e})")
+        if uses_postgres():
+            raise
 
     # 2. Fallback to reports.json
     if not reports and os.path.exists(REPORTS_JSON_PATH):
@@ -427,8 +466,12 @@ def get_all_reports() -> List[Dict[str, Any]]:
     return reports
 
 
-def save_report_entry(report_data: Dict[str, Any], vehicles: Optional[dict] = None):
-    """Save report metadata to SQLite DB and reports.json with vehicle snapshot."""
+def save_report_entry(
+    report_data: Dict[str, Any],
+    vehicles: Optional[dict] = None,
+    report_html: Optional[str] = None,
+):
+    """Save report metadata and content to the database."""
     vehicles_str = None
     v_dict = vehicles or report_data.get("vehicles")
     if v_dict:
@@ -440,8 +483,7 @@ def save_report_entry(report_data: Dict[str, Any], vehicles: Optional[dict] = No
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        is_sqlite = not (os.environ.get("DATABASE_URL") and not os.environ.get(
-            "DATABASE_URL").startswith("sqlite"))
+        is_sqlite = not uses_postgres()
         placeholder = "?" if is_sqlite else "%s"
 
         # One report per period: publishing a period again replaces the older
@@ -457,31 +499,36 @@ def save_report_entry(report_data: Dict[str, Any], vehicles: Optional[dict] = No
             query = f"""
                 UPDATE reports SET label = {placeholder}, date_range = {placeholder}, sort_date = {placeholder}, 
                 timestamp = {placeholder}, vehicles_count = {placeholder}, vehicles_label = {placeholder}, 
-                file_path = {placeholder}, vehicles_json = {placeholder}, created_at = {placeholder} WHERE id = {placeholder}
+                file_path = {placeholder}, vehicles_json = {placeholder}, report_html = {placeholder},
+                created_at = {placeholder} WHERE id = {placeholder}
             """
             cursor.execute(query, (
                 report_data["label"], report_data["range"], report_data["sort_date"],
                 report_data["timestamp"], report_data["vehicles_count"], report_data["vehicles_label"],
-                report_data["file"], vehicles_str, datetime.datetime.now(
+                report_data["file"], vehicles_str, report_html, datetime.datetime.now(
                 ).isoformat(), report_data["id"]
             ))
         else:
             query = f"""
-                INSERT INTO reports (id, label, date_range, sort_date, timestamp, vehicles_count, vehicles_label, file_path, vehicles_json, created_at)
-                VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
+                INSERT INTO reports (id, label, date_range, sort_date, timestamp, vehicles_count, vehicles_label, file_path, vehicles_json, report_html, created_at)
+                VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
             """
             cursor.execute(query, (
                 report_data["id"], report_data["label"], report_data["range"], report_data["sort_date"],
                 report_data["timestamp"], report_data["vehicles_count"], report_data["vehicles_label"],
-                report_data["file"], vehicles_str, datetime.datetime.now(
+                report_data["file"], vehicles_str, report_html, datetime.datetime.now(
                 ).isoformat()
             ))
         conn.commit()
         conn.close()
     except Exception as db_err:
         print(f"⚠️ Warning: DB save report error ({db_err})")
+        raise
 
-    # Sync to reports.json
+    if uses_postgres():
+        return
+
+    # Keep the JSON registry in sync for local SQLite deployments.
     try:
         existing_json = []
         if os.path.exists(REPORTS_JSON_PATH):
@@ -501,13 +548,12 @@ def save_report_entry(report_data: Dict[str, Any], vehicles: Optional[dict] = No
 
 
 def delete_report_entry(report_identifier: str) -> bool:
-    """Deletes a report by id or date range from DB, reports.json, and physical HTML files."""
+    """Delete a report by id or date range from the database and local files."""
     file_to_delete = None
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        is_sqlite = not (os.environ.get("DATABASE_URL") and not os.environ.get(
-            "DATABASE_URL").startswith("sqlite"))
+        is_sqlite = not uses_postgres()
         placeholder = "?" if is_sqlite else "%s"
         cursor.execute(f"SELECT file_path FROM reports WHERE id = {placeholder} OR date_range = {placeholder}", (
             report_identifier, report_identifier))
@@ -520,6 +566,11 @@ def delete_report_entry(report_identifier: str) -> bool:
         conn.close()
     except Exception as e:
         print(f"⚠️ Warning: DB delete report error ({e})")
+        if uses_postgres():
+            raise
+
+    if uses_postgres():
+        return True
 
     try:
         if os.path.exists(REPORTS_JSON_PATH):
@@ -568,15 +619,18 @@ def seed_initial_reports_to_db():
         if count == 0 and os.path.exists(REPORTS_JSON_PATH):
             with open(REPORTS_JSON_PATH, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                is_sqlite = not (os.environ.get("DATABASE_URL") and not os.environ.get(
-                    "DATABASE_URL").startswith("sqlite"))
+                is_sqlite = not uses_postgres()
                 placeholder = "?" if is_sqlite else "%s"
 
                 for item in data:
                     v_str = json.dumps(item["vehicles"]) if item.get(
                         "vehicles") else None
+                    cursor.execute(
+                        f"SELECT id FROM reports WHERE id = {placeholder}", (item["id"],))
+                    if cursor.fetchone():
+                        continue
                     cursor.execute(f"""
-                        INSERT OR IGNORE INTO reports (id, label, date_range, sort_date, timestamp, vehicles_count, vehicles_label, file_path, vehicles_json, created_at)
+                        INSERT INTO reports (id, label, date_range, sort_date, timestamp, vehicles_count, vehicles_label, file_path, vehicles_json, created_at)
                         VALUES ({placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder}, {placeholder})
                     """, (
                         item["id"], item.get("label", ""), item.get(
@@ -1027,6 +1081,8 @@ async def owner_dashboard(request: Request):
 # 3b. Active Fleet State API
 @app.get("/api/fleet_state")
 async def api_get_fleet_state():
+    if uses_postgres():
+        init_db()
     state = load_previous_vehicles()
     return JSONResponse(content=state)
 
@@ -1081,6 +1137,8 @@ async def api_get_reports():
 @app.post("/api/publish_report")
 async def api_publish_report(req: PublishReportRequest, request: Request):
     require_owner_auth(request)
+    if uses_postgres():
+        init_db()
 
     vehicles = prepare_vehicles_for_save(req.vehicles)
     global_duration = req.global_duration.strip()
@@ -1110,13 +1168,14 @@ async def api_publish_report(req: PublishReportRequest, request: Request):
     # 2. Run existing Python report generation process
     report_html = generate_html_report_content(vehicles, global_duration)
 
-    # 3. Save generated HTML report to all target locations
-    with open(report_abs_path, "w", encoding="utf-8") as f:
-        f.write(report_html)
-    with open(fleet_report_abs_path, "w", encoding="utf-8") as f:
-        f.write(report_html)
-    with open(os.path.join(DIR_PATH, "vehicle_mission_report_email.html"), "w", encoding="utf-8") as f:
-        f.write(report_html)
+    # Vercel's function filesystem is not persistent; store report HTML in Postgres.
+    if not uses_postgres():
+        with open(report_abs_path, "w", encoding="utf-8") as f:
+            f.write(report_html)
+        with open(fleet_report_abs_path, "w", encoding="utf-8") as f:
+            f.write(report_html)
+        with open(os.path.join(DIR_PATH, "vehicle_mission_report_email.html"), "w", encoding="utf-8") as f:
+            f.write(report_html)
 
     # 4. Save state to builder and JSON/DB
     save_state_to_builder(vehicles, global_duration)
@@ -1139,7 +1198,7 @@ async def api_publish_report(req: PublishReportRequest, request: Request):
     }
 
     # Store in database and reports.json
-    save_report_entry(report_record, vehicles=vehicles)
+    save_report_entry(report_record, vehicles=vehicles, report_html=report_html)
 
     return JSONResponse(content={
         "status": "success",
@@ -1177,11 +1236,14 @@ async def api_delete_report_by_id(report_id: str, request: Request):
 async def api_save_state(req: SaveStateRequest, request: Request):
     require_owner_auth(request)
     try:
+        if uses_postgres():
+            init_db()
         vehicles = prepare_vehicles_for_save(req.vehicles)
         global_duration = req.global_duration
 
         save_state_to_builder(vehicles, global_duration)
-        generate_html_report(vehicles, global_duration)
+        if not uses_postgres():
+            generate_html_report(vehicles, global_duration)
 
         return JSONResponse(content={"status": "success", "message": "State saved successfully"})
     except HTTPException:
@@ -1195,7 +1257,7 @@ async def api_save_state(req: SaveStateRequest, request: Request):
 async def api_status():
     db_connected = False
     db_error = None
-    db_type = "SQLite" if not os.environ.get("DATABASE_URL") else "PostgreSQL"
+    db_type = "PostgreSQL" if uses_postgres() else "SQLite"
     try:
         conn = get_db_connection()
         conn.close()
@@ -1233,6 +1295,24 @@ async def serve_report(filename: str):
         return await serve_logo()
 
     safe_name = os.path.basename(filename)
+    try:
+        init_db()
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        placeholder = "%s" if uses_postgres() else "?"
+        cursor.execute(
+            f"SELECT report_html FROM reports WHERE file_path = {placeholder}",
+            (f"reports/{safe_name}",))
+        row = cursor.fetchone()
+        conn.close()
+        if row and row[0]:
+            return HTMLResponse(content=row[0], headers=NO_CACHE)
+    except Exception as e:
+        print(f"⚠️ Warning: Could not load report from database: {e}")
+        if uses_postgres():
+            raise HTTPException(
+                status_code=500, detail="Could not load report from database.") from e
+
     file_path = os.path.join(REPORTS_DIR, safe_name)
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="text/html", headers=NO_CACHE)
