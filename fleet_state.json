@@ -1,5 +1,5 @@
 {
-  "global_duration": "16-10-2026 to 31-10-2026",
+  "global_duration": "01-11-2026 to 15-11-2026",
   "vehicles": {
     "MD9GBUE23DC341063": {
       "vin": "MD9GBUE23DC341063",
@@ -22,33 +22,16 @@
     "MD9GBUE2XDC341075": {
       "vin": "MD9GBUE2XDC341075",
       "nickname": "P18 Vehicle",
-      "location": "U.S",
+      "location": "5975, Zerker Road, Shafter, Kern County, California, 93263, United States",
       "mode": "Non-Autonomous",
-      "status": "mdm_issue",
-      "issues": [
-        "MDM is on but no data"
-      ],
-      "issue_details": [
-        {
-          "id": "mmv52altmj10p",
-          "issue": "MDM is on but no data",
-          "description": "The VT-Box/MDM came online on 27 October 2026, but no data was received.",
-          "period": "2 months",
-          "occurrences": "10 mins",
-          "component": "MDM",
-          "reported_by": "BVMC",
-          "severity": "Medium",
-          "rca": "application lunching issue",
-          "responsible_team": "Data Scouting",
-          "customer_feedback": "",
-          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-15T07:00:00.000Z&to=2026-11-01T06:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE2XDC341075&var-NickName=P18%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=&var-mc2_checksum=&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=&var-ccl_offset=0&var-ccl_"
-        }
-      ],
-      "timestamp": "",
-      "vt_box_time": "27-10-2026",
+      "status": "inactive",
+      "issues": [],
+      "issue_details": [],
+      "timestamp": "Last updated on 27-10-2026. MDM is on but no data.",
+      "vt_box_time": "",
       "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-15T07:00:00.000Z&to=2026-11-01T06:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE2XDC341075&var-NickName=P18%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=&var-mc2_checksum=&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-110",
       "distance": "Nil",
-      "duration": "10 mins",
+      "duration": "Nil",
       "versions": {
         "VT_BOX Version": "nil",
         "VCU Firmware Version": "nil"
@@ -75,16 +58,16 @@
     "MD9GBUE28DC341057": {
       "vin": "MD9GBUE28DC341057",
       "nickname": "P4 Vehicle",
-      "location": "5636, Collier Canyon Road, Livermore, Alameda County, California, 94551, United States",
+      "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
       "mode": "Non-Autonomous",
       "status": "healthy",
       "issues": [],
       "issue_details": [],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-29T07:00:00.000Z&to=2026-10-30T06:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE28DC341057&var-NickName=P4%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=A56A&var-mc2_checksum=0000&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADD6&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7",
-      "distance": "0.05",
-      "duration": "30 mins",
+      "grafana_url": "",
+      "distance": "0.34",
+      "duration": "5.53 mins",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.5.0"
@@ -101,8 +84,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "125.83",
-      "duration": "2.10 days",
+      "distance": "99.32",
+      "duration": "2.04 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -119,8 +102,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "81.88",
-      "duration": "1.61 days",
+      "distance": "68.06KM",
+      "duration": "18.6 hours",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -131,14 +114,31 @@
       "nickname": "P17 Vehicle",
       "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
-      "issues": [],
-      "issue_details": [],
+      "status": "unhealthy",
+      "issues": [
+        "auxilary_battery_voltage"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwkar857cln9",
+          "issue": "auxilary_battery_voltage",
+          "description": "On 10th Nov, the auxiliary battery voltage dropped to approximately 6.60 V.",
+          "period": "2026-11-10 11:14:01",
+          "occurrences": "33",
+          "component": "BMS",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "Based on what Pablo shared, we have the RCA: the 12V battery was draining due to continuous parasitic draw from the rear interior lights in the Safari load body. We need to discuss the exact corrective action taken and finalize our conclusion.",
+          "responsible_team": "PTE and  NPD",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-10T19:12:12.601Z&to=2026-11-10T19:16:36.716Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE28DC341074&var-NickName=P17%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offse"
+        }
+      ],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "",
-      "distance": "3.73",
-      "duration": "11.2 hours",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-10T19:12:12.601Z&to=2026-11-10T19:16:36.716Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE28DC341074&var-NickName=P17%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-37",
+      "distance": "0.95",
+      "duration": "2.47 days",
       "versions": {
         "VT_BOX Version": "2.3.2",
         "VCU Firmware Version": "1.2.2"
@@ -155,8 +155,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "198.88",
-      "duration": "4.08 days",
+      "distance": "96.07",
+      "duration": "2.01 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -167,14 +167,31 @@
       "nickname": "P21 Vehicle",
       "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
-      "issues": [],
-      "issue_details": [],
+      "status": "unhealthy",
+      "issues": [
+        "auxilary_battery_voltage"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwkh8hi5jvk2",
+          "issue": "auxilary_battery_voltage",
+          "description": "On 4th & 05th Nov, the auxiliary battery voltage dropped to approximately  9.80 to 10.9 V.",
+          "period": "2 days",
+          "occurrences": "4733",
+          "component": "BMS",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "",
+          "responsible_team": "PTE",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-05T21:25:07.000Z&to=2026-11-05T23:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE25DC341078&var-NickName=P21%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=FE22&var-mc2_checksum=B3BA&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offse"
+        }
+      ],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "",
-      "distance": "1.29",
-      "duration": "5 mins",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-05T21:25:07.000Z&to=2026-11-05T23:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE25DC341078&var-NickName=P21%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=FE22&var-mc2_checksum=B3BA&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-37",
+      "distance": "3.39",
+      "duration": "1.38 mins",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -208,8 +225,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-15T07:00:00.000Z&to=2026-11-01T06:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE23DC341080&var-NickName=P23%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-35",
-      "distance": "69.85",
-      "duration": "2.50 days",
+      "distance": "nil",
+      "duration": "nil",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.0"
@@ -226,10 +243,10 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "0",
+      "distance": "1.66",
       "duration": "0s",
       "versions": {
-        "VT_BOX Version": "nil",
+        "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
       }
     },
@@ -274,14 +291,31 @@
       "nickname": "P29 Vehicle",
       "location": "774, County Road 1005B, Batesville, Zavala County, Texas, 78829, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
-      "issues": [],
-      "issue_details": [],
+      "status": "unhealthy",
+      "issues": [
+        "distance got loss"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwklnivdu5m6",
+          "issue": "distance got loss",
+          "description": "Where the distance is lost from 4447KM to 4456KM.",
+          "period": "15-11-2026(10:07:00 to 11:18:00)",
+          "occurrences": "1 hours data missing",
+          "component": "MDM",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "",
+          "responsible_team": "Data scouting",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-bmsHMIV2/bvmc-team-vtbox-data-dashboard-developer?orgId=1&var-VIN=MD9GBUE25FC341004&from=2026-11-15T17:11:52.120Z&to=2026-11-16T02:00:35.064Z&timezone=America%2FLos_Angeles&var-Measurement1=vehicle_location&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=latitude&var-Field2=motorcontroller_1_distance_travelled&var-torque_or_speed_mode=Speed&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-bms_profile_checksum=ADE2&var-ccl_offset"
+        }
+      ],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "",
-      "distance": "332.95",
-      "duration": "4.40 days",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-bmsHMIV2/bvmc-team-vtbox-data-dashboard-developer?orgId=1&var-VIN=MD9GBUE25FC341004&from=2026-11-15T17:11:52.120Z&to=2026-11-16T02:00:35.064Z&timezone=America%2FLos_Angeles&var-Measurement1=vehicle_location&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=latitude&var-Field2=motorcontroller_1_distance_travelled&var-torque_or_speed_mode=Speed&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&var-aggregation_method=MODE%28&var-groupbycondition=GROUP%20BY%20time%28$__interval%29%20fill%28null%29&viewPanel=panel-61",
+      "distance": "176.35",
+      "duration": "2.56 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.2.0"
@@ -298,8 +332,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "4.09",
-      "duration": "53.5 mins",
+      "distance": "15.79",
+      "duration": "16.8 hours",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.20"
@@ -334,8 +368,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "194.13",
-      "duration": "1.88 days",
+      "distance": "184.55",
+      "duration": "2.35 days",
       "versions": {
         "VT_BOX Version": "2.2.0",
         "VCU Firmware Version": "1.2.2"
@@ -346,14 +380,31 @@
       "nickname": "P33 Vehicle",
       "location": "774, County Road 1005B, Batesville, Zavala County, Texas, 78829, United States",
       "mode": "Non-Autonomous",
-      "status": "inactive",
-      "issues": [],
-      "issue_details": [],
-      "timestamp": "09-09-2026(Location: 774, County Road 1005B, Batesville, Zavala County, Texas, 78829, United States)",
-      "vt_box_time": "",
-      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-26T13:38:04.765Z&to=2026-10-26T18:02:16.089Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE22FC341008&var-NickName=P33%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=&var-mc2_checksum=&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-52",
+      "status": "mdm_issue",
+      "issues": [
+        "MDM/VT-Box is on but no data"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwkn26xslmkm",
+          "issue": "MDM/VT-Box is on but no data",
+          "description": "VT_Box came online on 15 October 2026, but no data was received",
+          "period": "6 months",
+          "occurrences": "Continous",
+          "component": "MDM",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "Application lunch or need to check the storage",
+          "responsible_team": "Data Scouting",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-01T07:00:00.000Z&to=2026-11-16T07:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE22FC341008&var-NickName=P33%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=&var-mc2_checksum=&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=&var-ccl_offset=0&var-ccl_"
+        }
+      ],
+      "timestamp": "",
+      "vt_box_time": "Not Available",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-01T07:00:00.000Z&to=2026-11-16T07:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE22FC341008&var-NickName=P33%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=&var-mc2_checksum=&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-110",
       "distance": "Nil",
-      "duration": "Nil",
+      "duration": "2 days",
       "versions": {
         "VT_BOX Version": "Nil",
         "VCU Firmware Version": "Nil"
@@ -388,8 +439,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "36.33",
-      "duration": "10.8 hours",
+      "distance": "33.45",
+      "duration": "6.33 hours",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -398,7 +449,7 @@
     "MD9GBUE24FC341012": {
       "vin": "MD9GBUE24FC341012",
       "nickname": "P37 Vehicle",
-      "location": "Atascosa County, Texas, United States",
+      "location": "Waller County, Texas, United States",
       "mode": "Non-Autonomous",
       "status": "healthy",
       "issues": [],
@@ -406,8 +457,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "45.85",
-      "duration": "1.14 days",
+      "distance": "31.80",
+      "duration": "11.1 hours",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.2.0"
@@ -416,33 +467,16 @@
     "MD9GBUE26FC341013": {
       "vin": "MD9GBUE26FC341013",
       "nickname": "P38 Vehicle",
-      "location": "Avenue 295, Tulare County, California, 93221, United States",
+      "location": "North Kaweah Avenue, Exeter, Tulare County, California, 93221, United States",
       "mode": "Non-Autonomous",
-      "status": "unhealthy",
-      "issues": [
-        "Unit in preoperational & RPDO Timeout (drive inhibit)"
-      ],
-      "issue_details": [
-        {
-          "id": "mmvaqo8t5i0a8",
-          "issue": "Unit in preoperational & RPDO Timeout (drive inhibit)",
-          "description": "Unit in preoperational on 2026-10-16 11:47:19, 2026-10-19 08:07:12 & 2026-10-20 15:21:54 and RPDO Timeout (drive inhibit) on 2026-10-02 11:47:06 & 13:45:07",
-          "period": "multiple times",
-          "occurrences": "4 time",
-          "component": "Motor",
-          "reported_by": "BVMC",
-          "severity": "Low",
-          "rca": "The key position was observed to be in Position 2 while the vehicle was in motion. It is suspected that the driver may have changed the key position while driving, which could have resulted in a sudden change in vehicle behaviour and triggered the issue. The PTE team also observed that the throttle input was triggered during the key ON/OFF operation.",
-          "responsible_team": "PTE",
-          "customer_feedback": "Linder Equipment Co. - Troy reported no issues (Bryce Telfer)",
-          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-bmsHMIV2/bvmc-team-vtbox-data-dashboard-developer?orgId=1&var-VIN=MD9GBUE26FC341013&from=2026-10-16T07:00:00.000Z&to=2026-10-17T06:59:59.000Z&timezone=America%2FLos_Angeles&var-Measurement1=bms_battery_weather&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=auxilary_battery_voltage&var-Field2=motorcontroller_1_distance_travelled&var-torque_or_speed_mode=Speed&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-bms_profile_checksum="
-        }
-      ],
+      "status": "healthy",
+      "issues": [],
+      "issue_details": [],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-bmsHMIV2/bvmc-team-vtbox-data-dashboard-developer?orgId=1&var-VIN=MD9GBUE26FC341013&from=2026-10-16T07:00:00.000Z&to=2026-10-17T06:59:59.000Z&timezone=America%2FLos_Angeles&var-Measurement1=bms_battery_weather&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=auxilary_battery_voltage&var-Field2=motorcontroller_1_distance_travelled&var-torque_or_speed_mode=Speed&var-mc1_checksum=2513&var-mc2_checksum=AB4A&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&var-aggregation_method=MODE%28&var-groupbycondition=GROUP%20BY%20time%28$__interval%29%20fill%28null%29&viewPanel=panel-121",
-      "distance": "145.86",
-      "duration": "1.04 weeks",
+      "grafana_url": "",
+      "distance": "115.54",
+      "duration": "3.84 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -459,8 +493,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "62.58",
-      "duration": "22.7 hours",
+      "distance": "92.82",
+      "duration": "1.47 weeks",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.2.0"
@@ -495,8 +529,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "121.49",
-      "duration": "3.01 days",
+      "distance": "94.20",
+      "duration": "2.28 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.2.0"
@@ -505,7 +539,7 @@
     "MD9GBUE23FC341017": {
       "vin": "MD9GBUE23FC341017",
       "nickname": "P42 Vehicle (15-12-2025)",
-      "location": "East Fantz Avenue, Fresno County, California, 93648, United States",
+      "location": "South Macdonough Avenue, Fresno County, California, United States",
       "mode": "Non-Autonomous",
       "status": "healthy",
       "issues": [],
@@ -513,8 +547,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "162.84",
-      "duration": "1.14 weeks",
+      "distance": "303",
+      "duration": "1.45 weeks",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0",
@@ -532,8 +566,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "12.86",
-      "duration": "35.9 mins",
+      "distance": "18.35",
+      "duration": "1.28 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -568,8 +602,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "32.69",
-      "duration": "1.41 hours",
+      "distance": "2.99",
+      "duration": "1.13 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.3.2"
@@ -604,8 +638,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "240.51",
-      "duration": "1.09 weeks",
+      "distance": "32.25",
+      "duration": "2.57 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.2.0"
@@ -614,7 +648,7 @@
     "MD9GBUE2XFC341029": {
       "vin": "MD9GBUE2XFC341029",
       "nickname": "P54 Vehicle",
-      "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
+      "location": "South Lexington Street, Delano, Kern County, California, 93215, United States",
       "mode": "Non-Autonomous",
       "status": "healthy",
       "issues": [],
@@ -622,8 +656,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "11.70",
-      "duration": "18.4 hours",
+      "distance": "17.59",
+      "duration": "1.61 mins",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -634,31 +668,14 @@
       "nickname": "P55 Vehicle",
       "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
       "mode": "Non-Autonomous",
-      "status": "unhealthy",
-      "issues": [
-        "3-pin connector"
-      ],
-      "issue_details": [
-        {
-          "id": "mmvax8jqczxxd",
-          "issue": "3-pin connector",
-          "description": "After the gearbox was replaced, a broken locking tab was identified on the 3-pin connector attached to the ESS. The damaged connector may be causing intermittent motor power loss while the vehicle is running. A replacement connector is available from another vehicle, but guidance is required on safely removing and reconnecting the three orange cables inside the ESS.",
-          "period": "Sept 3rd",
-          "occurrences": "1st time",
-          "component": "Motor",
-          "reported_by": "BVMC",
-          "severity": "High",
-          "rca": "The 3-pin connector attached to the ESS had a broken locking tab, potentially causing an intermittent connection and motor power loss while the vehicle was running. The ESS team has been consulted for guidance on replacing the damaged connector and verifying the internal connections.",
-          "responsible_team": "Mechanical Team",
-          "customer_feedback": "",
-          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-bmsHMIV2/bvmc-team-vtbox-data-dashboard-developer?orgId=1&var-VIN=MD9GBUE26FC341030&from=2026-09-03T16:53:32.000Z&to=2026-09-03T16:57:32.000Z&timezone=America%2FLos_Angeles&var-Measurement1=controller_motor_status_1_REAR&var-Measurement2=bms_battery_usage&var-FIELD1=motorcontroller_1_distance_travelled&var-Field2=battery_current&var-torque_or_speed_mode=Speed&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-bms_profile_checksum=ADE2&var-cc"
-        }
-      ],
-      "timestamp": "",
+      "status": "inactive",
+      "issues": [],
+      "issue_details": [],
+      "timestamp": "28-10-2026(Location: 2934, Falcon Drive, Madera, Madera County, California, 93637, United States)",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "0.89",
-      "duration": "1.52 hours",
+      "distance": "Nil",
+      "duration": "Nil",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -669,14 +686,14 @@
       "nickname": "P56 Vehicle",
       "location": "2934, Falcon Drive, Madera, Madera County, California, 93637, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
+      "status": "inactive",
       "issues": [],
       "issue_details": [],
-      "timestamp": "",
+      "timestamp": "21-10-2026(Location: 2934, Falcon Drive, Madera, Madera County, California, 93637, United States)",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "0.22",
-      "duration": "3.96 mins",
+      "distance": "Nil",
+      "duration": "Nil",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -687,14 +704,46 @@
       "nickname": "P57 Vehicle",
       "location": "8798, Amen Corner, The Estates at Tour 18, Flower Mound, Denton County, Texas, 75022, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
-      "issues": [],
-      "issue_details": [],
+      "status": "unhealthy",
+      "issues": [
+        "Motor faults",
+        "auxilary_battery_voltage"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwlyzebkm6j1",
+          "issue": "Motor faults",
+          "description": "Unit in preoperational, DSP parameter error, CANBUS Fault, CANopen Heartbeat Failed & VA SS Error this errors got triggered",
+          "period": "12-11-2026",
+          "occurrences": "once",
+          "component": "Motor",
+          "reported_by": "BVMC",
+          "severity": "Low",
+          "rca": "The vehicle travelled approximately 12.01 km after the errors were triggered. The PTE Team confirmed that a sudden key position change from 2 to 0 caused these faults",
+          "responsible_team": "PTE",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-12T17:12:59.616Z&to=2026-11-12T17:14:45.197Z&timezone=browser&var-VIN=MD9GBUE2XFC341032&var-NickName=P57%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=79D8&var-mc2_checksum=4645&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_sc"
+        },
+        {
+          "id": "mmwm0jhp3qsxr",
+          "issue": "auxilary_battery_voltage",
+          "description": "The vehicle requires further monitoring, as the auxiliary battery voltage dropped below the 10.9 V threshold on 12 occasions.",
+          "period": "2nd, 3th, 4th, 06th & 12th",
+          "occurrences": "12 times",
+          "component": "BMS",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "Further analysis is required to identify the cause of the repeated auxiliary battery voltage drops below 10.9 V.",
+          "responsible_team": "PTE",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-06T12:45:40.000Z&to=2026-11-06T12:45:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE2XFC341032&var-NickName=P57%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=79D8&var-mc2_checksum=4645&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offse"
+        }
+      ],
       "timestamp": "",
       "vt_box_time": "",
-      "grafana_url": "",
-      "distance": "144.67",
-      "duration": "6.85 days",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-12T17:12:59.616Z&to=2026-11-12T17:14:45.197Z&timezone=browser&var-VIN=MD9GBUE2XFC341032&var-NickName=P57%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=79D8&var-mc2_checksum=4645&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=IST%20UTC%2B5:30",
+      "distance": "98.34",
+      "duration": "5.28 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -703,7 +752,7 @@
     "MD9GBUE21FC341033": {
       "vin": "MD9GBUE21FC341033",
       "nickname": "P58 Vehicle",
-      "location": "Rivercrest Golf Club & Preserve, Oriole Lane, Upper Providence Township, Montgomery County, Pennsylvania, 19482, United States",
+      "location": "1662, 5th Street, Prospect Heights, Ewing Township, Mercer County, New Jersey, 08638, United States",
       "mode": "Non-Autonomous",
       "status": "healthy",
       "issues": [],
@@ -711,8 +760,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "27.32",
-      "duration": "1.27 days",
+      "distance": "22.98",
+      "duration": "4.65 hours",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -723,14 +772,31 @@
       "nickname": "P59 Vehicle",
       "location": "22579, Snow Road, Kern County, California, 93314, United States",
       "mode": "Non-Autonomous",
-      "status": "healthy",
-      "issues": [],
-      "issue_details": [],
+      "status": "unhealthy",
+      "issues": [
+        "auxilary_battery_voltage"
+      ],
+      "issue_details": [
+        {
+          "id": "mmwm1ip8ykkad",
+          "issue": "auxilary_battery_voltage",
+          "description": "The vehicle requires further monitoring, as the auxiliary battery voltage dropped below the 10.9 V threshold on 74 occasions.",
+          "period": "1 to 14th Nov",
+          "occurrences": "74 times",
+          "component": "BMS",
+          "reported_by": "BVMC",
+          "severity": "Medium",
+          "rca": "Further analysis is required to identify whether the drops are caused by battery degradation, excessive parasitic load, or an issue with the DC-DC charging system",
+          "responsible_team": "PTE",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-08T18:35:04.000Z&to=2026-11-08T18:35:30.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE23FC341034&var-NickName=P59%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offse"
+        }
+      ],
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "184.64",
-      "duration": "6.32 days",
+      "distance": "140.51",
+      "duration": "5.23 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0"
@@ -783,8 +849,8 @@
       "timestamp": "",
       "vt_box_time": "",
       "grafana_url": "",
-      "distance": "84.59",
-      "duration": "5.47 days",
+      "distance": "91.97",
+      "duration": "4.49 days",
       "versions": {
         "VT_BOX Version": "1.2.2",
         "VCU Firmware Version": "2.6.0",
@@ -1007,27 +1073,27 @@
       "mode": "Non-Autonomous",
       "status": "mdm_issue",
       "issues": [
-        "Data missing"
+        "data loss"
       ],
       "issue_details": [
         {
-          "id": "mmw0rdh1vzv5l",
-          "issue": "Data missing",
-          "description": "From 22-10-2026 to 26-10-2026, the MDM was online, but no data was received. We need to check whether the vehicle was at the Madera office during this period.",
-          "period": "5 days",
-          "occurrences": "no data came",
-          "component": "MDM",
+          "id": "mmwm2xl36e0ne",
+          "issue": "data loss",
+          "description": "104 KM to 141 KM in between distance data was missing.",
+          "period": "03 days",
+          "occurrences": "12 hours",
+          "component": "Other",
           "reported_by": "BVMC",
-          "severity": "High",
-          "rca": "need to check the application",
-          "responsible_team": "Data Scouting",
-          "customer_feedback": "it is in the office",
-          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-21T18:30:00.000Z&to=2026-10-27T18:29:59.000Z&timezone=browser&var-VIN=MD9GBUE25FC341035&var-NickName=P60%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_sc"
+          "severity": "Medium",
+          "rca": "further check is needed with the data scouting team. To not make to the further loss",
+          "responsible_team": "Data scouting",
+          "customer_feedback": "",
+          "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-03T08:00:00.000Z&to=2026-11-07T07:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE25FC341035&var-NickName=P60%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=auxilary_battery_voltage&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_sc"
         }
       ],
       "timestamp": "",
-      "vt_box_time": "22-10-2026 to 26-10-2026",
-      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-10-21T18:30:00.000Z&to=2026-10-27T18:29:59.000Z&timezone=browser&var-VIN=MD9GBUE25FC341035&var-NickName=P60%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=bms_battery_usage&var-FIELD1=auxilary_battery_voltage&var-Field2=battery_current&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=IST%20UTC%2B5:30&viewPanel=panel-110",
+      "vt_box_time": "03-11-2026 23:58:00 to 04-11-2026 15:46:00",
+      "grafana_url": "https://grafana.bosonmotors.com/d/e74b43a6-cf76-4e99-8d01-hgehehr/vehicle-support-team-developer?orgId=1&from=2026-11-03T08:00:00.000Z&to=2026-11-07T07:59:59.000Z&timezone=America%2FLos_Angeles&var-VIN=MD9GBUE25FC341035&var-NickName=P60%20Vehicle&var-Measurement1=bms_battery_weather&var-Measurement2=controller_motor_status_1_REAR&var-FIELD1=auxilary_battery_voltage&var-mc1_checksum=6E4A&var-mc2_checksum=D85E&var-torque_or_speed_mode=Speed&var-bms_profile_checksum=ADE2&var-ccl_offset=0&var-ccl_scale_factor=1&var-dcl_scale_factor=1&var-timezone=PDT%20UTC-7&viewPanel=panel-61",
       "distance": "Nil",
       "duration": "4 days",
       "versions": {
